@@ -16,6 +16,20 @@
   }
 }
 
+.light-mode {
+  background-color: white;
+  color: black;
+}
+
+.dark-mode {
+  background-color: rgb(24, 31, 57);
+  color: white;
+}
+
+.text-mainColor {
+  color: #4a90e2; /* Example color, adjust as needed */
+}
+
 .poppins {
   font-family: var(--font-poppins);
 }

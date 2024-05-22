@@ -7,7 +7,10 @@ import {
     faBarsProgress,
     faLayerGroup,
     faFeather,
+    faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
+import DarkMode from "./Darkmode";
+import { useGlobalContextProvider } from "../contextAPI";
 
 interface menuItems {
     name: string;
@@ -31,6 +34,8 @@ function Sidebar() {
         });
         setMenuItems(copyMenuItems);
     }
+
+    const { isDark, setIsDark } = useGlobalContextProvider();
 
     return (
         <div className="poppins border border-gray-200 w-[330px] p-6 py-16 flex flex-col gap-3 justify-between">
@@ -62,15 +67,29 @@ function Sidebar() {
                             height={20}
                             icon={menuItem.icon}
                         />
-                        <span className={`${menuItem.isSelected ? "text-white" : "text-black"}`}>
+                        <span
+                            className={`${menuItem.isSelected ? "text-white" : isDark ? "text-white" : "text-dark"}`}
+                        >
                             {menuItem.name}
                         </span>
                     </div>
                 ))}
             </div>
-            {/* DarkMode */}
-            <div className="border p-3">dark mode</div>
-
+            {/* Footer */}
+            <div className="pl-5 cursor-pointer p-3 select-none flex gap-8 flex-col">
+                {/* Logout button */}
+                <div className="flex gap-3 items-center">
+                    <FontAwesomeIcon
+                        height={20}
+                        width={20}
+                        icon={faArrowRightFromBracket}
+                        className="text-mainColor"
+                    />
+                    <span className="text-[15px]">Log out</span>
+                </div>
+                {/* DarkMode */}
+                <DarkMode />
+            </div>
         </div>
     );
 }
